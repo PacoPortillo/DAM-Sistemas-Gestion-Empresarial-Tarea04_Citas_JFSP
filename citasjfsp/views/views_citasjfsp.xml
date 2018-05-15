@@ -1,0 +1,61 @@
+<odoo>
+  <data>
+  
+    <!-- Vistas -->
+    <!-- Árbol -->
+    <record model="ir.ui.view" id="citasjfsp.list_tree">
+      <field name="name">Listado de Citas</field>
+      <field name="model">citasjfsp.citasjfsp</field>
+	  <field name="type">tree</field>
+      <field name="arch" type="xml">
+        <tree>
+		      <field name="cita"/>
+          <field name="autor"/>
+          <field name="fecha_visualizacion"/>
+		      <field name="orden"/>
+        </tree>
+      </field>
+    </record>
+
+	<!-- Formulario -->
+	<record model="ir.ui.view" id="citasjfsp.list_form">
+      <field name="name">Detalle de Cita</field>
+      <field name="model">citasjfsp.citasjfsp</field>
+      <field name="arch" type="xml">
+	<form string="Detalle de Cita">
+		<sheet>
+			<div class="oe_title">
+				<label for="autor" class="oe_edit_only" string="Escribe tu cita:">Cita</label>
+				<h1><field name="cita"/></h1>
+			</div>
+			<separator string="Datos de la cita:" colspan="2" />
+			<group colspan="2" col="2">
+				<field name="autor"/>
+				<field name="fecha_visualizacion"/>
+				<field name="orden"/>
+			</group>
+		</sheet>
+	</form>
+      </field>
+    </record>
+
+    <!-- Eventos de apertura de vistas sobre modelos -->
+    <record model="ir.actions.act_window" id="citasjfsp.action_window">
+      <field name="name">Ventana de Citas</field>
+      <field name="res_model">citasjfsp.citasjfsp</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+
+    <!-- Elemento del menú superior -->
+    <menuitem name="Citas" id="citasjfsp.menu_root"/>
+    
+    <!-- Categorías del menú -->
+    <menuitem name="Gestor de Citas" id="citasjfsp.menu_1" parent="citasjfsp.menu_root"/>
+
+    <!-- Eventos de menú -->
+    <menuitem name="Listado" id="citasjfsp.menu_1_list" parent="citasjfsp.menu_1"
+              action="citasjfsp.action_window"/>
+
+  </data>
+</odoo>
